@@ -1,4 +1,5 @@
-(function(window, document, documentElement, body, style, cssText, display) {
+/*! https://github.com/Prinzhorn/0 | free to use under terms of MIT license */
+(function(window, document, documentElement, body) {
 	var addEvent = function(el, name, fn) {
 		if(el.attachEvent) {
 			el.attachEvent('on' + name, fn);
@@ -38,4 +39,4 @@
 	addEvent(box, 'click', closeBox);
 	addEvent(box, 'keyup', closeBox);
 
-}(window, document, document.documentElement, document.body, 'style', 'cssText', 'display'));
+}(window, document, document.documentElement, document.body));
