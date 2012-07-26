@@ -23,7 +23,6 @@
 		if(el.rel === '0') {
 			boxStyle.display = 'block';
 			boxStyle.backgroundImage = 'url(' + el.href + ')';
-			console.log(el.href);
 			box.focus();
 
 			e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
@@ -31,7 +30,6 @@
 	});
 
 	var closeBox = function(e) {
-		console.log(e);
 		if(e.type === 'click' || e.keyCode == 27) {
 			box.style.display = 'none';
 		}

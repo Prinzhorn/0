@@ -1,7 +1,7 @@
 0
 =
 
-LIGHTbox script in almost 0 (909) bytes.
+LIGHTbox script in almost 0 (874) bytes.
 
 * 0 configuration
 * 0 images
