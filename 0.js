@@ -17,8 +17,6 @@
 	body.appendChild(box);
 
 	addEvent(window, 'click', function(e) {
-		e = e || window.event;
-
 		var el = (e.target || e.srcElement).parentNode;
 
 		if(el.rel === '0') {
@@ -26,7 +24,7 @@
 			boxStyle.backgroundImage = 'url(' + el.href + ')';
 			box.focus();
 
-			e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+			(e.preventDefault && e.preventDefault()) || (window.event.preventDefault && window.event.preventDefault()) || (window.event.returnValue = false);
 		}
 	});
 
