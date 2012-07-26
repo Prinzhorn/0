@@ -1,25 +1,43 @@
-(function(window, document, documentElement, body, style, cssText, display, onclick, onkeyup) {
-	window[onclick] = function(e) {
-		e = e || window.event;
-		e = (e.target || e.srcElement).parentNode;
-
-		if(e.rel == 0) {
-			body[style][display] = 'none';
-			documentElement[style][cssText] = 'background:url(' + e.href + ') center 0 no-repeat #000;';
-
-			document[onclick] = function() {
-				documentElement[style][cssText] = body[style][display] = '';
-			};
-
-			document[onkeyup] = function(e) {
-				if(e.keyCode == 27) {
-					document[onclick]();
-				}
-			};
-
-			documentElement.focus();
-
-			return false;
+(function(window, document, documentElement, body, style, cssText, display) {
+	var addEvent = function(el, name, fn) {
+		if(el.attachEvent) {
+			el.attachEvent('on' + name, fn);
+		} else {
+			el.addEventListener(name, fn, false);
 		}
 	};
-}(window, document, document.documentElement, document.body, 'style', 'cssText', 'display', 'onclick', 'onkeyup'));
+
+	var box = document.createElement('div');
+	box.tabIndex = 100;
+
+	var boxStyle = box.style;
+	boxStyle.cssText = 'position:fixed;left:0;top:0;right:0;bottom:0;z-index:1000;background:rgba(0,0,0,0.7) center no-repeat;background-size:contain;text-align:right;font-size:20px;font-family:sans-serif;font-weight:bold;color:#fff;padding:1em;display:none;cursor:pointer;';
+	box.innerHTML = 'X';
+	body.appendChild(box);
+
+	addEvent(window, 'click', function(e) {
+		e = e || window.event;
+
+		var el = (e.target || e.srcElement).parentNode;
+
+		if(el.rel === '0') {
+			boxStyle.display = 'block';
+			boxStyle.backgroundImage = 'url(' + el.href + ')';
+			console.log(el.href);
+			box.focus();
+
+			e.preventDefault ? e.preventDefault() : window.event.returnValue = false;
+		}
+	});
+
+	var closeBox = function(e) {
+		console.log(e);
+		if(e.type === 'click' || e.keyCode == 27) {
+			box.style.display = 'none';
+		}
+	};
+
+	addEvent(box, 'click', closeBox);
+	addEvent(box, 'keyup', closeBox);
+
+}(window, document, document.documentElement, document.body, 'style', 'cssText', 'display'));
