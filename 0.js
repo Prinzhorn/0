@@ -21,7 +21,7 @@
 
 		var el = (e.target || e.srcElement).parentNode;
 
-		if(el.rel === '0') {
+		if((e.which || e.button) === 1 && el.rel === '0') {
 			boxStyle.display = 'block';
 			boxStyle.backgroundImage = 'url(' + el.href + ')';
 			box.focus();
