@@ -32,7 +32,7 @@
 		}
 	};
 
-	var elems = document.getElementsByTagName('*');
+	var elems = document.getElementsByTagName('a');
 	for (var i in elems) {
 		if (elems[i].rel === '0') addEvent(elems[i], 'click', callback);
 	}
