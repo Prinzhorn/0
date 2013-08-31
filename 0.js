@@ -1,4 +1,11 @@
-/*! https://github.com/Prinzhorn/0 | free to use under terms of MIT license */
+/*!
+	0 lightbox
+	Lightbox in almost 0 bytes.
+
+	https://github.com/Prinzhorn/0
+
+	Free to use under terms of MIT license.
+*/
 (function(window, document) {
 	var addEvent = function(el, name, fn) {
 		if(el.addEventListener) {
