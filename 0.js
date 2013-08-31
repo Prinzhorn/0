@@ -16,7 +16,7 @@
 	box.innerHTML = 'X';
 	document.body.appendChild(box);
 
-	addEvent(document, 'click', function(e) {
+	var callback = function(e) {
 		e = e || window.event;
 
 		var el = (e.target || e.srcElement).parentNode;
@@ -30,7 +30,12 @@
 
 			return false;
 		}
-	});
+	};
+
+	var elems = document.getElementsByTagName('*');
+	for (var i in elems) {
+		if (elems[i].rel === '0') addEvent(elems[i], 'click', callback);
+	}
 
 	var closeBox = function(e) {
 		if(e.type === 'click' || e.keyCode == 27) {
