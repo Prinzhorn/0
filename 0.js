@@ -7,6 +7,8 @@
 	Free to use under terms of MIT license.
 */
 (function(window, document) {
+	'use strict';
+
 	var addEvent = function(el, name, fn) {
 		if(el.addEventListener) {
 			el.addEventListener(name, fn, false);
@@ -33,7 +35,11 @@
 			boxStyle.backgroundImage = 'url(' + el.href + ')';
 			box.focus();
 
-			e.preventDefault ? e.preventDefault() : e.returnValue = false;
+			if(e.preventDefault) {
+				e.preventDefault();
+			} else {
+				e.returnValue = false;
+			}
 
 			return false;
 		}
@@ -47,5 +53,4 @@
 
 	addEvent(box, 'click', closeBox);
 	addEvent(box, 'keyup', closeBox);
-
 }(window, document));
