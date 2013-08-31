@@ -47,7 +47,7 @@
 
 	var closeBox = function(e) {
 		if(e.type === 'click' || e.keyCode == 27) {
-			box.style.display = 'none';
+			boxStyle.display = 'none';
 		}
 	};
 
