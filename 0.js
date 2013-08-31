@@ -1,8 +1,10 @@
 /*! https://github.com/Prinzhorn/0 | free to use under terms of MIT license */
 (function(window, document) {
+	var click = 'click';
 	var addEvent = function(el, name, fn) {
-		if(el.addEventListener) {
-			el.addEventListener(name, fn, false);
+		el.ae = el.addEventListener;
+		if(el.ae) {
+			el.ae(name, fn, false);
 		} else {
 			el.attachEvent('on' + name, fn);
 		}
@@ -21,29 +23,29 @@
 
 		var el = (e.target || e.srcElement).parentNode;
 
-		if(el.rel === '0') {
-			boxStyle.display = 'block';
-			boxStyle.backgroundImage = 'url(' + el.href + ')';
-			box.focus();
+		boxStyle.display = 'block';
+		boxStyle.backgroundImage = 'url(' + el.href + ')';
+		box.focus();
 
-			e.preventDefault ? e.preventDefault() : e.returnValue = false;
+		e.p = e.preventDefault;
+		e.p ? e.p() : e.returnValue = false;
 
-			return false;
-		}
+		return false;
+
 	};
 
 	var elems = document.getElementsByTagName('a');
 	for (var i in elems) {
-		if (elems[i].rel === '0') addEvent(elems[i], 'click', callback);
+		if (elems[i].rel === '0') addEvent(elems[i], click, callback);
 	}
 
 	var closeBox = function(e) {
-		if(e.type === 'click' || e.keyCode == 27) {
-			box.style.display = 'none';
+		if(e.type === click || e.keyCode == 27) {
+			boxStyle.display = 'none';
 		}
 	};
 
-	addEvent(box, 'click', closeBox);
+	addEvent(box, click, closeBox);
 	addEvent(box, 'keyup', closeBox);
 
 }(window, document));
